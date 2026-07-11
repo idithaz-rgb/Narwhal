@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Road to Value — NARWHAL × Databricks Roundtable</title>
+  <meta name="description" content="An intimate roundtable for startup founders between Seed and Round A. July 28, 2026 · Tel Aviv.">
+  <meta property="og:title" content="The Road to Value — NARWHAL × Databricks">
+  <meta property="og:description" content="An intimate roundtable for startup founders between Seed and Round A.">
+  <meta property="og:type" content="website">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #B49B50;
+      --gold-light: rgba(180,155,80,0.8);
+      --gold-dim: rgba(180,155,80,0.25);
+      --gold-faint: rgba(180,155,80,0.08);
+      --bg: #0a0a0f;
+      --text: #f0ede6;
+      --text-dim: rgba(240,237,230,0.55);
+      --text-muted: rgba(240,237,230,0.3);
+      --border: rgba(240,237,230,0.08);
+      --border-gold: rgba(180,155,80,0.2);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 3rem;
+      border-bottom: 0.5px solid var(--border-gold);
+    }
+    .topbar-label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(180,155,80,0.5);
+    }
+    .topbar-logo {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+    .topbar-logo span { color: var(--gold-light); margin: 0 0.4rem; }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 5rem 3rem 3.5rem;
+    }
+    .tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .tag {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border: 0.5px solid var(--border-gold);
+      color: var(--gold-light);
+      border-radius: 2px;
+    }
+    h1 {
+      font-size: clamp(48px, 9vw, 80px);
+      font-weight: 300;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+    .hero-sub {
+      font-size: 17px;
+      color: var(--text-dim);
+      max-width: 540px;
+      line-height: 1.65;
+      margin-bottom: 3rem;
+    }
+
+    /* ── EVENT INFO BOX ── */
+    .event-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 0.5px solid var(--border-gold);
+      border-radius: 3px;
+      overflow: hidden;
+      max-width: 460px;
+    }
+    .event-cell {
+      padding: 1.25rem 1.5rem;
+    }
+    .event-cell:first-child {
+      border-right: 0.5px solid var(--border-gold);
+    }
+    .event-label {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(180,155,80,0.5);
+      margin-bottom: 0.5rem;
+    }
+    .event-val {
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      border: none;
+      border-top: 0.5px solid var(--border);
+      margin: 0 3rem;
+    }
+
+    /* ── SECTION ── */
+    .section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem 3rem;
+    }
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(180,155,80,0.5);
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 0.5px solid var(--border-gold);
+    }
+
+    /* ── TOPICS ── */
+    .topics { display: flex; flex-direction: column; }
+    .topic {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      padding: 1.1rem 0;
+      border-bottom: 0.5px solid var(--border);
+    }
+    .topic:last-child { border-bottom: none; }
+    .topic-num {
+      font-size: 11px;
+      color: rgba(180,155,80,0.4);
+      letter-spacing: 0.05em;
+      min-width: 22px;
+      margin-top: 3px;
+    }
+    .topic-text {
+      font-size: 16px;
+      color: rgba(240,237,230,0.82);
+      line-height: 1.55;
+    }
+
+    /* ── VALUE BOX ── */
+    .value-box {
+      background: var(--gold-faint);
+      border: 0.5px solid var(--border-gold);
+      border-radius: 3px;
+      padding: 1.75rem 2rem;
+    }
+    .value-box p {
+      font-size: 17px;
+      color: var(--text);
+      line-height: 1.7;
+    }
+    .value-box strong { color: var(--gold-light); font-weight: 500; }
+
+    /* ── SPEAKERS ── */
+    .speakers {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .speaker {
+      padding: 1.1rem 1rem;
+      border: 0.5px solid var(--border);
+      border-radius: 3px;
+    }
+    .speaker-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .speaker-role {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+    .speaker-co {
+      font-size: 12px;
+      color: var(--gold-light);
+      margin-top: 3px;
+    }
+
+    /* ── FORM ── */
+    .form-section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem 3rem 5rem;
+    }
+    .form-title {
+      font-size: 22px;
+      font-weight: 300;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+    .form-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .field { display: flex; flex-direction: column; gap: 7px; }
+    .field.full { grid-column: 1 / -1; }
+    label {
+      font-size: 10px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    input {
+      background: rgba(240,237,230,0.03);
+      border: 0.5px solid rgba(240,237,230,0.12);
+      border-radius: 3px;
+      padding: 11px 14px;
+      color: var(--text);
+      font-size: 14px;
+      font-family: inherit;
+      width: 100%;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    input:focus { border-color: rgba(180,155,80,0.45); }
+    input::placeholder { color: rgba(240,237,230,0.18); }
+    .submit-btn {
+      margin-top: 1.75rem;
+      width: 100%;
+      padding: 15px;
+      background: var(--gold-faint);
+      border: 0.5px solid rgba(180,155,80,0.45);
+      border-radius: 3px;
+      color: var(--gold-light);
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .submit-btn:hover {
+      background: rgba(180,155,80,0.15);
+      border-color: rgba(180,155,80,0.6);
+    }
+    .seats-note {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 1rem;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── SUCCESS ── */
+    .success {
+      display: none;
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+    .success.show { display: block; }
+    .success-check {
+      font-size: 28px;
+      color: var(--gold-light);
+      margin-bottom: 1rem;
+    }
+    .success-title {
+      font-size: 20px;
+      font-weight: 300;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .success-sub { font-size: 14px; color: var(--text-muted); }
+
+    /* ── FOOTER ── */
+    .footer {
+      border-top: 0.5px solid var(--border);
+      padding: 2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-logo {
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .footer-link {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+    .footer-link:hover { color: var(--gold-light); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .topbar { padding: 1.25rem 1.5rem; }
+      .hero { padding: 3.5rem 1.5rem 2.5rem; }
+      .divider { margin: 0 1.5rem; }
+      .section { padding: 2.5rem 1.5rem; }
+      .form-section { padding: 2.5rem 1.5rem 4rem; }
+      .footer { padding: 1.5rem; flex-direction: column; gap: 1rem; text-align: center; }
+      .form-grid { grid-template-columns: 1fr; }
+      .speakers { grid-template-columns: 1fr 1fr; }
+      .event-box { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-label">// Roundtable #1</div>
+    <div class="topbar-logo">NARWHAL <span>×</span> Databricks</div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="tags">
+      <span class="tag">Founders</span>
+      <span class="tag">Seed → Round A</span>
+    </div>
+    <h1>The Road<br>to Value</h1>
+    <p class="hero-sub">An intimate roundtable for startup founders. A direct conversation about what really determines where your company is going.</p>
+    <div class="event-box">
+      <div class="event-cell">
+        <div class="event-label">When</div>
+        <div class="event-val">Tuesday, July 28, 2026<br>10:00 to 12:00</div>
+      </div>
+      <div class="event-cell">
+        <div class="event-label">Where</div>
+        <div class="event-val">ROOMS, Rubinstein Towers<br>20 Lincoln St, Tel Aviv</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- WHAT WE'LL DISCUSS -->
+  <section class="section">
+    <div class="section-label">What we'll discuss</div>
+    <div class="topics">
+      <div class="topic">
+        <span class="topic-num">01</span>
+        <span class="topic-text">Why a great product isn't enough if it doesn't meet a real need in the field</span>
+      </div>
+      <div class="topic">
+        <span class="topic-num">02</span>
+        <span class="topic-text">How Data &amp; AI with Databricks can create real value, not just buzzwords</span>
+      </div>
+      <div class="topic">
+        <span class="topic-num">03</span>
+        <span class="topic-text">Why the road to market starts long before your first sale</span>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- WHAT YOU'LL GET -->
+  <section class="section">
+    <div class="section-label">What you'll take home</div>
+    <div class="value-box">
+      <p>Not magic answers, not high-level frameworks. <strong>Sharper questions, real-world insights, and an open conversation with founders who are in exactly the same place.</strong></p>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- SPEAKERS -->
+  <section class="section">
+    <div class="section-label">Speakers //</div>
+    <div class="speakers">
+      <div class="speaker">
+        <div class="speaker-name">Idit Klaiman</div>
+        <div class="speaker-role">Co-Founder</div>
+        <div class="speaker-co">NARWHAL</div>
+      </div>
+      <div class="speaker">
+        <div class="speaker-name">Moshe Klaiman</div>
+        <div class="speaker-role">Co-Founder</div>
+        <div class="speaker-co">NARWHAL</div>
+      </div>
+      <div class="speaker">
+        <div class="speaker-name">Shimon Shasson</div>
+        <div class="speaker-role">Director</div>
+        <div class="speaker-co">Databricks</div>
+      </div>
+      <div class="speaker">
+        <div class="speaker-name">Guy Livni</div>
+        <div class="speaker-role">Solution Architect</div>
+        <div class="speaker-co">Databricks</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- REGISTRATION FORM -->
+  <section class="form-section">
+    <h2 class="form-title">Register</h2>
+    <p class="form-desc">An intimate roundtable. If this speaks to you, now is the time.</p>
+
+    <div id="form-wrap">
+      <div class="form-grid">
+        <div class="field">
+          <label for="f-name">Full name</label>
+          <input type="text" id="f-name" placeholder="Your name" required>
+        </div>
+        <div class="field">
+          <label for="f-email">Email</label>
+          <input type="email" id="f-email" placeholder="you@company.com" required>
+        </div>
+        <div class="field">
+          <label for="f-phone">Phone</label>
+          <input type="tel" id="f-phone" placeholder="+972-50-0000000" required>
+        </div>
+        <div class="field">
+          <label for="f-role">Title</label>
+          <input type="text" id="f-role" placeholder="CEO / CTO / Founder" required>
+        </div>
+        <div class="field full">
+          <label for="f-company">Company</label>
+          <input type="text" id="f-company" placeholder="Company name" required>
+        </div>
+      </div>
+
+      <button class="submit-btn" onclick="handleSubmit()">Submit Registration</button>
+      <p class="seats-note">An intimate roundtable · Seats are limited</p>
+    </div>
+
+    <div class="success" id="success-msg">
+      <div class="success-check">✓</div>
+      <div class="success-title">Registration received</div>
+      <p class="success-sub">We'll be in touch shortly with confirmation.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">NARWHAL</div>
+    <a href="https://narwhal-global.com" class="footer-link">narwhal-global.com</a>
+  </footer>
+
+  <script>
+    const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxnzjvrgqIu1sGOf7HcXVZZMPAKZjL7kCUWA_-EL41b0gU_qWj4gf7TqrXj02LNM6Qb/exec';
+
+    function handleSubmit() {
+      const name    = document.getElementById('f-name').value.trim();
+      const email   = document.getElementById('f-email').value.trim();
+      const phone   = document.getElementById('f-phone').value.trim();
+      const role    = document.getElementById('f-role').value.trim();
+      const company = document.getElementById('f-company').value.trim();
+
+      if (!name || !email || !phone || !role || !company) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+
+      const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRe.test(email)) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+
+      fetch(SHEET_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name, email, phone, role, company,
+          timestamp: new Date().toISOString(),
+          source: 'narwhal-global.com/rounds'
+        })
+      }).catch(() => {});
+
+      document.getElementById('form-wrap').style.display = 'none';
+      document.getElementById('success-msg').classList.add('show');
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') handleSubmit();
+    });
+  </script>
+</body>
+</html>
